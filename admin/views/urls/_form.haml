@@ -1,0 +1,37 @@
+- error = @url.errors.include?(:source)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :source, :class => 'control-label'
+  .controls
+    =f.text_field :source, :class => 'form-control input-large input-with-feedback', :autofocus => true
+    %span.help-inline=error ? f.error_message_on(:source, :class => 'text-error') : pat(:example)
+- error = @url.errors.include?(:destination)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :destination, :class => 'control-label'
+  .controls
+    =f.text_field :destination, :class => 'form-control input-large input-with-feedback'
+    %span.help-inline=error ? f.error_message_on(:destination, :class => 'text-error') : pat(:example)
+- error = @url.errors.include?(:email)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :email, :class => 'control-label'
+  .controls
+    =f.text_field :email, :class => 'form-control input-large input-with-feedback'
+    %span.help-inline=error ? f.error_message_on(:email, :class => 'text-error') : pat(:example)
+- error = @url.errors.include?(:active)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :active, :class => 'control-label'
+  .controls
+    =f.check_box :active, :class => 'form-control input-large input-with-feedback'
+    %span.help-inline=error ? f.error_message_on(:active, :class => 'text-error') : pat(:example)
+- error = @url.errors.include?(:clicks)
+%fieldset.control-group{:class => error ? 'has-error' : ''}
+  =f.label :clicks, :class => 'control-label'
+  .controls
+    =f.text_field :clicks, :class => 'form-control input-large input-with-feedback'
+    %span.help-inline=error ? f.error_message_on(:clicks, :class => 'text-error') : pat(:example)
+
+.form-actions
+  =f.submit pat(:save), :class => 'btn btn-primary'
+  &nbsp;
+  =f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue'
+  &nbsp;
+  =link_to pat(:cancel), url(:urls, :index), :class => 'btn btn-default'

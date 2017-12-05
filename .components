@@ -1,0 +1,10 @@
+---
+:orm: activerecord
+:test: minitest
+:mock: none
+:script: none
+:renderer: haml
+:stylesheet: none
+:namespace: UrlShort
+:migration_format: timestamp
+:admin_renderer: haml

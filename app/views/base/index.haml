@@ -1,0 +1,17 @@
+!!! 5
+%head
+  %script{ src: 'https://www.google.com/recaptcha/api.js' }
+%body
+  %div
+    = form_for :url, '/register', :id => 'register' do |f|
+      = f.error_messages
+      %p
+        = f.label :url
+        = f.text_field :url
+      %p
+        = f.label :email
+        = f.text_field :email
+      %p
+        %div{ class: 'g-recaptcha', 'data-sitekey': '6LcObjsUAAAAAGkSH3TQdI1M0Oqh84J4ckFc4xuH' }
+      %p
+        = f.submit 'Create', :class => 'button'

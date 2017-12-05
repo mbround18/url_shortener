@@ -1,0 +1,62 @@
+%ul.nav.nav-tabs
+  %li.active=link_to tag_icon(:list, pat(:list)), url(:urls, :index)
+  %li=link_to tag_icon(:plus, pat(:new)), url(:urls, :new)
+
+.tabs-content
+  %table#list.table.table-striped.table-hover.table-condensed
+    %thead
+      %tr
+        %th.header.list-menu
+          .dropdown
+            %a.list-menu-toggle.dropdown-toggle{:href => '#', :'data-toggle' => :dropdown}
+              =tag_icon :magic
+              %span.caret
+            %ul.list-menu.dropdown-menu{:role => :menu}
+              %li.list-menu-wrapper=link_to tag_icon('check-square-o', pat(:select_all)), '#', :id => 'select-all', :class => 'list-menu-link'
+              %li.list-menu-wrapper.list-menu-wrapper-disabled
+                =link_to tag_icon('square-o', pat(:deselect_all)), '#', :id => 'deselect-all', :class => 'list-menu-link list-menu-link-disabled'
+              %li.list-menu-divider.divider
+              %li.list-menu-wrapper.list-menu-wrapper-disabled
+                =link_to tag_icon('trash-o', pat(:delete_selected)), '#', :id => 'delete-selected', :class => 'list-menu-link list-menu-link-disabled'
+                .list-menu-popover-delete-selected.popover.right
+                  .arrow
+                  %h3.popover-title=pat(:delete_selected_title)
+                  .popover-content
+                    = form_tag url(:urls, :destroy_many), :method => :delete do
+                      =hidden_field_tag :url_ids, :'data-delete-many-ids' => true
+                      =submit_tag pat(:delete), :class =>'list-menu-popover-delete-selected-btn btn btn-danger btn-small'
+                      .btn.btn-default.btn-small.cancel=pat(:cancel)
+        %th.header= mat(:url, :id)
+        %th.header= mat(:url, :source)
+        %th.header= mat(:url, :destination)
+        %th.header= mat(:url, :email)
+        %th.header= mat(:url, :active)
+        %th.header= mat(:url, :clicks)
+        %th.header= mat(:url, :created_at)
+        %th.header= mat(:url, :updated_at)
+        %th.header.list-row-action-header
+
+    %tbody
+      -@urls.each do |url|
+        %tr.list-row
+          %td.list-column.list-selectable
+            =check_box_tag 'url_ids[]', :value => url.id, :class => 'list-selectable-checkbox'
+          %td.list-column=url.id
+          %td.list-column=url.source
+          %td.list-column=url.destination
+          %td.list-column=url.email
+          %td.list-column= url.active ? tag_icon(:ok) : tag_icon(:remove)
+          %td.list-column=url.clicks
+          %td.list-column=time_ago_in_words url.created_at
+          %td.list-column=time_ago_in_words url.updated_at
+          %td.list-column.list-row-action
+            .list-row-action-wrapper
+              =link_to tag_icon(:edit), :href => url(:urls, :edit, :id => url.id), :rel => :tooltip, :title => "#{pat(:edit)} url", :class => 'list-row-action-wrapper-link'
+              =link_to tag_icon('trash-o'), :rel => :tooltip, :title => "#{pat(:delete)} url", :class => 'list-row-action-delete-one list-row-action-wrapper-link'
+              .popover.list-row-action-popover-delete-one.left
+                .arrow
+                %h3.popover-title=pat(:delete, :model => "url")
+                .popover-content
+                  = form_tag url(:urls, :destroy, :id => url.id), :method => :delete do
+                    =submit_tag pat(:delete), :class =>'list-row-action-popover-delete-one-btn btn btn-danger btn-small'
+                    .btn.btn-default.btn-small.cancel=pat(:cancel)
