@@ -1,9 +1,10 @@
 require 'pp'
 require 'securerandom'
+require 'json'
 UrlShort::App.controllers :base do
 
 	get :index, :map => '/' do
-		render :index, locals: { recaptcha_site_key: '6LcObjsUAAAAAGkSH3TQdI1M0Oqh84J4ckFc4xuH' }
+		render :index, locals: { recaptcha_site_key: environment.config[:recaptcha_site_key] }
 	end
 
 	get :redirect, map: '/:id' do |id|
@@ -15,28 +16,29 @@ UrlShort::App.controllers :base do
 		render :redirect, locals: { destination: url[:destination], clicks: clicks + 1 }
 	end
 
-	post :create, maps: '/create' do
-		url = {
-			source: SecureRandom.hex(4),
-			destination: params[:url],
-			active: true,
-			clicks: 0
-		}
+	post :create, map: '/create' do
+		values = JSON.parse(params.to_json, symbolize_names: true)
+		url = { source: SecureRandom.hex(4), destination: values[:url], active: true, clicks: 0 }
 		email = params.fetch(:email, nil)
-		url[:email] = email unless email.nil?
-		if is_this_entry_valid?(url)
-
-		end
-		@url = Url.new(params[:url])
-		if @url.save
-			@title = pat(:create_title, :model => "url #{@url.id}")
-			flash[:success] = pat(:create_success, :model => 'Url')
-			params[:save_and_continue] ? redirect(url(:urls, :index)) : redirect(url(:urls, :edit, :id => @url.id))
+		url[:email] = email unless email.nil? ||  email.empty?
+		# Testing if the url is valid
+		valid_entry = is_this_entry_valid?(url)
+		if is_this_entry_valid?(url).first
+			url[:email] = nil if email.empty?
+			unless environment.config[:recaptcha_site_key] == '' || environment.config[:recaptcha_secret_key] == ''
+				validity_of_humanity = is_this_a_human?(values[:'g-recaptcha-response'])
+				halt 400, { status: ['Not a human!!!!!!!'] }.to_json unless validity_of_humanity[:success]
+			end
+			@url = Url.new(url)
+			if @url.save
+				response = { status: 'success', redirect: url[:source], destination: url[:destination] }.to_json
+				halt 200, response
+			else
+				halt 400, { status: ['URL Did not save successfully!!!!!!!'] }.to_json
+			end
 		else
-			@title = pat(:create_title, :model => 'url')
-			flash.now[:error] = pat(:create_error, :model => 'url')
-			render 'urls/new'
+			halt 400, valid_entry.last.errors.to_json
 		end
-	end
 
+	end
 end

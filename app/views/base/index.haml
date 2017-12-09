@@ -1,17 +1,30 @@
 !!! 5
 %head
-  %script{ src: 'https://www.google.com/recaptcha/api.js' }
-%body
-  %div
-    = form_for :url, '/register', :id => 'register' do |f|
-      = f.error_messages
-      %p
-        = f.label :url
-        = f.text_field :url
-      %p
-        = f.label :email
-        = f.text_field :email
-      %p
-        %div{ class: 'g-recaptcha', 'data-sitekey': '6LcObjsUAAAAAGkSH3TQdI1M0Oqh84J4ckFc4xuH' }
-      %p
-        = f.submit 'Create', :class => 'button'
+  %link{:crossorigin => "anonymous", :href => "https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.35/css/uikit.min.css", :integrity => "sha256-9SPML5I/DutYKXUCVaAeyDq4xfVZ+HZ08DXguV00hiw=", :rel => "stylesheet"}/
+  %script{crossorigin: 'anonymous', integrity: 'sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=', src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'}
+  %script{crossorigin: 'anonymous', integrity: 'sha256-Daf8GuI2eLKHJlOWLRR/zRy9Clqcj4TUSumbxYH9kGI=', src: 'https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js'}
+  %script{:crossorigin => "anonymous", :integrity => "sha256-XNlhd8OvFFRX2BeMnfMUELHHkeIKVNqKklNvJHNRUeE=", :src => "https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.35/js/uikit.min.js"}
+  %script{:crossorigin => "anonymous", :integrity => "sha256-F6h55Qw6sweK+t7SiOJX+2bpSAa3b/fnlrVCJvmEj1A=", :src => "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"}
+  %script{src: './javascripts/index.js'}
+  %script{src: 'https://www.google.com/recaptcha/api.js'}
+  %title URLShortener
+%body.uk-height-1-1
+  %div{style: 'width: 25em;'}
+    .uk-flex.uk-flex-column.uk-width-auto.uk-vertical-align
+      %div#registerUrl
+        .uk-card.uk-card-default.uk-card-body
+          %form#registerUrlForm
+            .uk-form-row
+              = csrf_token_field
+            .uk-form-row
+              %label{class: 'uk-form-label', for: 'destination_url'} Destination URL (Required):
+              %input{name: 'url', id: 'destination_url', type: 'text', class: 'uk-input', required: ''}
+            .uk-form-row
+              %label{class: 'uk-form-label', for: 'user_email'} Email:
+              %input{name: 'email', id: 'user_email', type: 'text', class: 'uk-input'}
+            .uk-form-row
+              %div#recaptcha{ class: 'g-recaptcha', 'data-sitekey': "#{recaptcha_site_key}", style: 'padding: 1em;'}
+          %div#formControls{style: 'padding-top: 1em'}
+            %button{class: 'uk-button uk-button-primary uk-button-large', onclick: 'submit_url_register_form();', style: 'width: 10em;'} Create
+      %div#successfulPost.uk-card.uk-card-default.uk-card-body.uk-margin-top
+      %div#unsuccessfulPost.uk-card.uk-card-default.uk-card-body.uk-margin-top

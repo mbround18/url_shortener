@@ -55,6 +55,11 @@ module UrlShort
 		##
 		# You can manage errors like:
 		#
+
+		error 403 do
+			render 'error/403'
+		end
+
 	  error 404 do
 	    render 'errors/404'
 	  end

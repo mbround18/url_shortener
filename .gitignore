@@ -7,6 +7,7 @@ vendor/gems/*
 db/*.db
 .*.sw*
 config.json
+/bin/
 
 # Created by https://www.gitignore.io/api/ruby,linux,rubymine+all
 

@@ -1,5 +1,43 @@
 !!! 5
-%p Redirecting you to
-%a{href: destination}=destination
-%p This link has been clicked:
-%p=clicks
+%html.uk-height-1-1.uk-touch{:dir => "ltr", :lang => "en-gb"}
+  %head
+    %meta{:charset => "utf-8"}
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
+    %link{:crossorigin => "anonymous", :href => "https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.35/css/uikit.min.css", :integrity => "sha256-9SPML5I/DutYKXUCVaAeyDq4xfVZ+HZ08DXguV00hiw=", :rel => "stylesheet"}/
+    %script{crossorigin: 'anonymous', integrity: 'sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=', src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'}
+    %script{:crossorigin => "anonymous", :integrity => "sha256-XNlhd8OvFFRX2BeMnfMUELHHkeIKVNqKklNvJHNRUeE=", :src => "https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.35/js/uikit.min.js"}
+  %title URLShortener
+  %body.uk-height-1-1
+    .uk-vertical-align.uk-text-center.uk-height-1-1
+      .uk-vertical-align-middle{:style => "width: 250px;"}
+        %dv.uk-panel.uk-panel-box
+          .uk-row
+            %p Redirecting you to:
+            %a#redirect{href: destination}=destination
+          .uk-row
+            %p
+              %span#countdown 5
+              seconds
+          .uk-row
+            %p This link has been clicked: #{clicks}
+:javascript
+  // Total seconds to wait
+  var seconds = 5;
+  var redir_link = $("#redirect");
+
+  function countdown() {
+
+      seconds = seconds - 1;
+      if (seconds < 0) {
+
+          window.location = redir_link.attr('href');
+      } else {
+          // Update remaining seconds
+          document.getElementById("countdown").innerHTML = seconds;
+          // Count down using javascript
+          window.setTimeout("countdown()", 1000);
+      }
+  }
+
+  // Run countdown function
+  countdown();
