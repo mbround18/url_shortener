@@ -7,10 +7,10 @@ UrlShort::Admin.controllers :sessions do
     if account = Account.authenticate(params[:email], params[:password])
       set_current_account(account)
       redirect url(:base, :index)
-    elsif Padrino.env == :development && params[:bypass]
-      account = Account.first
-      set_current_account(account)
-      redirect url(:base, :index)
+    # elsif Padrino.env == :development && params[:bypass]
+    #   account = Account.first
+    #   set_current_account(account)
+    #   redirect url(:base, :index)
     else
       params[:email] = h(params[:email])
       flash.now[:error] = pat('login.error')
