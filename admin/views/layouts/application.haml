@@ -10,8 +10,12 @@
     %title= @title.present? ? "#{@title} | Padrino Admin" : "Padrino Admin"
     =favicon_tag 'favicon.ico'
     %link{:href => 'http://fonts.googleapis.com/css?family=Varela', :rel => :stylesheet}
+    %meta{:name => :viewport, :content => 'width=device-width,initial-scale=1'}
+    %link{:crossorigin => "anonymous", :href => "https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.35/css/uikit.min.css", :integrity => "sha256-9SPML5I/DutYKXUCVaAeyDq4xfVZ+HZ08DXguV00hiw=", :rel => "stylesheet"}/
+    %script{crossorigin: 'anonymous', integrity: 'sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=', src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'}
+    %script{crossorigin: 'anonymous', integrity: 'sha256-Daf8GuI2eLKHJlOWLRR/zRy9Clqcj4TUSumbxYH9kGI=', src: 'https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js'}
+    %script{:crossorigin => "anonymous", :integrity => "sha256-XNlhd8OvFFRX2BeMnfMUELHHkeIKVNqKklNvJHNRUeE=", :src => "https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.35/js/uikit.min.js"}
     =stylesheet_link_tag 'bootstrap', 'application'
-
   %body
     .navbar.navbar-fixed-top
       .navbar-inner

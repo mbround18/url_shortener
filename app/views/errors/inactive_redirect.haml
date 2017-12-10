@@ -2,24 +2,29 @@
   .uk-vertical-align-middle{style: 'width: 250px;'}
     %dv.uk-panel.uk-panel-box
       .uk-row
-        %p Redirecting you to:
-        %a#redirect{href: destination}=destination
+        %h3 Wooooaaahhh!!!
+        %strong Unfortunately this redirect has for some reason been disabled by an Admin! Apologies... Taking you back to the homepage...
+        %div#redirect
+
       .uk-row
         %p
           %span#countdown 5
           seconds
-      .uk-row
-        %p This link has been clicked: #{clicks}
 :javascript
   // Total seconds to wait
   var seconds = 5;
   var redir_link = $("#redirect");
+  var base_url = window.location.protocol + '//' + window.location.host;
+
+  function set_link_to_base() {
+      var redirect_div = $("#redirect");
+      redirect_div.append('<a href=' + base_url + ' id="redirectLink">' + base_url + '</a>')
+  }
 
   function countdown() {
-
+      var redir_link = $('#redirectLink');
       seconds = seconds - 1;
       if (seconds < 0) {
-
           window.location = redir_link.attr('href');
       } else {
           // Update remaining seconds
@@ -28,6 +33,9 @@
           window.setTimeout("countdown()", 1000);
       }
   }
+
+  // setting the link to the base url
+  set_link_to_base();
 
   // Run countdown function
   countdown();

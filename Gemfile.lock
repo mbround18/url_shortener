@@ -16,7 +16,6 @@ GEM
     argon2 (1.1.4)
       ffi (~> 1.9)
       ffi-compiler (~> 0.1)
-    bcrypt (3.1.11)
     concurrent-ruby (1.0.5)
     domain_name (0.5.20170404)
       unf (>= 0.0.5, < 1.0.0)
@@ -61,6 +60,7 @@ GEM
     i18n (0.9.1)
       concurrent-ruby (~> 1.0)
     inflecto (0.0.2)
+    kgio (2.11.0)
     mail (2.7.0)
       mini_mime (>= 0.1.1)
     mime-types (2.99.3)
@@ -110,6 +110,7 @@ GEM
       rack
     rack-test (0.8.2)
       rack (>= 1.0, < 3)
+    raindrops (0.19.0)
     rake (12.3.0)
     rest-client (2.0.2)
       http-cookie (>= 1.0.2, < 2.0)
@@ -129,6 +130,9 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.4)
+    unicorn (5.3.1)
+      kgio (~> 2.6)
+      raindrops (~> 0.7)
 
 PLATFORMS
   ruby
@@ -137,7 +141,6 @@ DEPENDENCIES
   activerecord (>= 3.1)
   activesupport (>= 3.1)
   argon2
-  bcrypt
   dry-types
   dry-validation
   haml
@@ -148,6 +151,7 @@ DEPENDENCIES
   rack-test
   rake
   rest-client
+  unicorn
 
 RUBY VERSION
    ruby 2.4.2p198

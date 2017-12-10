@@ -1,0 +1,10 @@
+{
+  "_comment": "Rename this file to be config.json and change the data as needed. This comment is irrelevant to the actual config settings",
+  "recaptcha_secret_key": "",
+  "recaptcha_site_key": "",
+  "database": "url_short",
+  "db_user": "urlshort",
+  "db_pass": "change_me",
+  "db_host": "localhost",
+  "db_port": 5432
+}

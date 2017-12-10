@@ -10,18 +10,20 @@ UrlShort::App.controllers :base do
 	get :redirect, map: '/:id' do |id|
 		url = Url.find_by(source: id)
 		error 404 if url.nil?
-		error 403 unless url[:active]
-		clicks = url[:clicks]
-		url.update_attribute(:clicks, clicks + 1)
-		render :redirect, locals: { destination: url[:destination], clicks: clicks + 1 }
+		if url[:active]
+			clicks = url[:clicks]
+			url.update_attribute(:clicks, clicks + 1)
+			render :redirect, locals: { destination: url[:destination], clicks: clicks + 1 }
+		else
+			render 'errors/inactive_redirect'
+		end
 	end
 
 	post :create, map: '/create' do
 		values = JSON.parse(params.to_json, symbolize_names: true)
 		url = { source: SecureRandom.hex(4), destination: values[:url], active: true, clicks: 0 }
 		email = params.fetch(:email, nil)
-		url[:email] = email unless email.nil? ||  email.empty?
-		# Testing if the url is valid
+		url[:email] = email unless email.nil? || email.empty?
 		valid_entry = is_this_entry_valid?(url)
 		if is_this_entry_valid?(url).first
 			url[:email] = nil if email.empty?
