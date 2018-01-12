@@ -1,6 +1,10 @@
 # url_short (Alpha Release)
 
-## Ubuntu requirements install:
+## Currently Supported Distrobutions
+
+ 1. Ubuntu 16.04 Xenial
+
+## Install Process:
 When installing please install under a service account (EX: Jenkins)
 
 ### Packages: 
