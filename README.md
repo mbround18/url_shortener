@@ -26,11 +26,11 @@ psql=# grant all privileges on database urlshorty to urlshorty ;
 ```
 
 
-[Source](https://medium.com/coding-blocks/creating-user-database-and-adding-access-on-postgresql-8bfcd2f4a91e)
+[Postgres Setup Source Info](https://medium.com/coding-blocks/creating-user-database-and-adding-access-on-postgresql-8bfcd2f4a91e)
 
 ### Ruby Recommended Install:
-1. [Install: rbenv](https://github.com/rbenv/rbenv)
-2. [Install: rbenv-build](https://github.com/rbenv/ruby-build)
+1. [Install rbenv](https://github.com/rbenv/rbenv)
+2. [Install rbenv-build](https://github.com/rbenv/ruby-build)
 3. Follow commands below:
 ```sh
 $ rbenv install 2.4.2
