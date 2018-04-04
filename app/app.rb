@@ -57,7 +57,7 @@ module UrlShort
 		#
 
 		error 403 do
-			render 'error/403'
+			render 'errors/403'
 		end
 
 	  error 404 do

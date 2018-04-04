@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Padrino supports Ruby version 1.9 and later
-ruby '2.4.2'
+ruby '2.5.0'
 
 # Distribute your app as a gem
 # gemspec
@@ -17,7 +17,7 @@ ruby '2.4.2'
 gem 'rake'
 
 # Component requirements
-gem 'activerecord', '>= 3.1', :require => 'active_record'
+gem 'activerecord', '>= 3.1', require: 'active_record'
 gem 'activesupport', '>= 3.1'
 gem 'argon2'
 gem 'haml'
@@ -28,8 +28,8 @@ gem 'rest-client'
 gem 'highline'
 
 # Test requirements
-gem 'minitest', :require => 'minitest/autorun', :group => 'test'
-gem 'rack-test', :require => 'rack/test', :group => 'test'
+gem 'minitest', require: 'minitest/autorun', group: 'test'
+gem 'rack-test', require: 'rack/test', group: 'test'
 
 # Padrino Stable Gem
 gem 'padrino', '0.14.1.1'

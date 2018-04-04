@@ -4,11 +4,18 @@
   %meta{:name => :viewport, :content => 'width=device-width,initial-scale=1'}
   %link{crossorigin: 'anonymous', href: "https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.35/css/uikit.min.css", integrity: "sha256-9SPML5I/DutYKXUCVaAeyDq4xfVZ+HZ08DXguV00hiw=", rel: "stylesheet"}
   %link{crossorigin: 'anonymous', href: "https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css", integrity: "sha256-HxaKz5E/eBbvhGMNwhWRPrAR9i/lG1JeT4mD6hCQ7s4=", rel: "stylesheet"}
+  %link{rel: :stylesheet, type: 'text/css', href: '/stylesheets/application.css'}
   %script{crossorigin: 'anonymous', integrity: 'sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=', src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'}
   %script{crossorigin: 'anonymous', integrity: 'sha256-Daf8GuI2eLKHJlOWLRR/zRy9Clqcj4TUSumbxYH9kGI=', src: 'https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js'}
-  %script{crossorigin: 'anonymous', integrity: "sha256-XNlhd8OvFFRX2BeMnfMUELHHkeIKVNqKklNvJHNRUeE=", src: "https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.35/js/uikit.min.js"}
+  %script{crossorigin: 'anonymous', integrity: 'sha256-XNlhd8OvFFRX2BeMnfMUELHHkeIKVNqKklNvJHNRUeE=', src: 'https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-beta.35/js/uikit.min.js'}
+  %script{crossorigin: 'anonymous', integrity: 'sha256-9MzwK2kJKBmsJFdccXoIDDtsbWFh8bjYK/C7UjB1Ay0=', src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js'}
   %script{src: './javascripts/index.js'}
   %script{src: 'https://www.google.com/recaptcha/api.js'}
   %title URLShortener
 %body.uk-height-1-1
   %div#content=yield
+%footer
+  %div{'uk-sticky': 'bottom: true'}
+    %p
+      Powered by
+      %a.uk-link-muted{href: 'https://github.com/mbround18/url_shortener'} MBRound18's URL Shortener
