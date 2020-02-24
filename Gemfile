@@ -14,12 +14,12 @@ ruby '2.5.0'
 # gem 'oj'
 
 # Project requirements
-gem 'rake'
+gem 'rake', '>= 12.3.3'
 
 # Component requirements
 gem 'activerecord', '>= 3.1', require: 'active_record'
 gem 'activesupport', '>= 3.1'
-gem 'argon2'
+gem 'argon2', '>= 1.1.4'
 gem 'haml'
 gem 'pg'
 gem 'dry-validation'
