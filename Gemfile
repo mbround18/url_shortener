@@ -17,8 +17,8 @@ ruby '2.5.0'
 gem 'rake'
 
 # Component requirements
-gem 'activerecord', '>= 3.1', require: 'active_record'
-gem 'activesupport', '>= 3.1'
+gem 'activerecord', '>= 5.2.4.3', require: 'active_record'
+gem 'activesupport', '>= 5.2.4.3'
 gem 'argon2'
 gem 'haml'
 gem 'pg'
