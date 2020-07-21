@@ -29,7 +29,7 @@ gem 'highline'
 
 # Test requirements
 gem 'minitest', require: 'minitest/autorun', group: 'test'
-gem 'rack-test', '>= 1.0.0', require: 'rack/test', group: 'test'
+gem 'rack-test', '>= 1.1.0', require: 'rack/test', group: 'test'
 
 # Padrino Stable Gem
 gem 'padrino', '0.14.1.1'

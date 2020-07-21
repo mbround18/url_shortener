@@ -145,7 +145,7 @@ DEPENDENCIES
   minitest
   padrino (= 0.14.1.1)
   pg
-  rack-test (>= 1.0.0)
+  rack-test (>= 1.1.0)
   rake
   rest-client
 
